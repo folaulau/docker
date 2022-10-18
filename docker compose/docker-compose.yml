@@ -1,0 +1,45 @@
+# docker compose for all containers locally
+# docker compose up -d (https://docs.docker.com/engine/reference/commandline/compose_up/)
+# docker compose down -v (https://docs.docker.com/engine/reference/commandline/compose_down/)
+
+version: '3.0'
+services:
+  elasticsearch:
+    container_name: elastic-search-container
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.3
+    restart: always
+    environment:
+    - xpack.security.enabled=false
+    - discovery.type=single-node
+    ports:
+    - 9200:9200
+    - 9300:9300
+  kibana:
+    container_name: kibana-container
+    image: docker.elastic.co/kibana/kibana:7.17.3
+    restart: always
+    environment:
+    - ELASTICSEARCH_HOSTS=http://elastic-search-container:9200
+    depends_on:
+    - elasticsearch
+    ports:
+    - 5601:5601
+  redis:
+    container_name: redis-container
+    image: redis:latest
+    restart: always
+    ports:
+      - '6379:6379'
+  # neo4j, graph database
+  neo4j:
+    container_name: neo4j-container
+    image: neo4j:latest
+    restart: always
+    environment:
+    - NEO4J_AUTH=neo4j/pwxtest
+    ports:
+    - 7474:7474
+    - 7687:7687
+networks:
+  es-net:
+    driver: bridge
