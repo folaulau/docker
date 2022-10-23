@@ -31,15 +31,15 @@ services:
     ports:
       - '6379:6379'
   # neo4j, graph database
-  neo4j:
-    container_name: neo4j-container
-    image: neo4j:latest
-    restart: always
-    environment:
-    - NEO4J_AUTH=neo4j/pwxtest
-    ports:
-    - 7474:7474
-    - 7687:7687
+  # neo4j:
+  #   container_name: neo4j-container
+  #   image: neo4j:latest
+  #   restart: always
+  #   environment:
+  #   - NEO4J_AUTH=neo4j/pwxtest
+  #   ports:
+  #   - 7474:7474
+  #   - 7687:7687
   # aws dynamodb
   dynamodb:
     container_name: dynamodb-container
