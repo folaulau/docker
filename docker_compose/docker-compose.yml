@@ -41,16 +41,16 @@ services:
   #   - 7474:7474
   #   - 7687:7687
   # aws dynamodb
-  dynamodb:
-    container_name: dynamodb-container
-    image: "amazon/dynamodb-local:latest"
-    restart: always
-    command: "-jar DynamoDBLocal.jar -sharedDb -dbPath ./data"
-    ports:
-      - "8000:8000"
-    volumes:
-      - "./docker/dynamodb:/home/dynamodblocal/data"
-    working_dir: /home/dynamodblocal
+  # dynamodb:
+  #   container_name: dynamodb-container
+  #   image: "amazon/dynamodb-local:latest"
+  #   restart: always
+  #   command: "-jar DynamoDBLocal.jar -sharedDb -dbPath ./data"
+  #   ports:
+  #     - "8000:8000"
+  #   volumes:
+  #     - "./docker/dynamodb:/home/dynamodblocal/data"
+  #   working_dir: /home/dynamodblocal
 networks:
   es-net:
     driver: bridge
