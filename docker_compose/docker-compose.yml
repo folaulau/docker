@@ -1,12 +1,12 @@
 # docker compose for all containers locally
 # docker compose up -d (https://docs.docker.com/engine/reference/commandline/compose_up/)
-# docker compose down -v (https://docs.docker.com/engine/reference/commandline/compose_down/)
+# docker compose down -v --rmi all (https://docs.docker.com/engine/reference/commandline/compose_down/)
 
 version: '3.0'
 services:
   elasticsearch:
     container_name: elastic-search-container
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.3
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.2 #7.17.3 or 7.10.2
     restart: always
     environment:
     - xpack.security.enabled=false
@@ -16,7 +16,7 @@ services:
     - 9300:9300
   kibana:
     container_name: kibana-container
-    image: docker.elastic.co/kibana/kibana:7.17.3
+    image: docker.elastic.co/kibana/kibana:7.10.2 #7.17.3 or 7.10.2
     restart: always
     environment:
     - ELASTICSEARCH_HOSTS=http://elastic-search-container:9200
