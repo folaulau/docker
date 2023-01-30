@@ -5,8 +5,9 @@
 version: '3.0'
 services:
   elasticsearch:
+  # https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html
     container_name: elastic-search-container
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.2 #7.17.3 or 7.10.2
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.5.3 #7.17.3 or 7.10.2
     restart: always
     environment:
     - xpack.security.enabled=false
@@ -15,8 +16,9 @@ services:
     - 9200:9200
     - 9300:9300
   kibana:
+  # https://www.elastic.co/guide/en/kibana/current/docker.html
     container_name: kibana-container
-    image: docker.elastic.co/kibana/kibana:7.10.2 #7.17.3 or 7.10.2
+    image: docker.elastic.co/kibana/kibana:8.5.3 #7.17.3 or 7.10.2
     restart: always
     environment:
     - ELASTICSEARCH_HOSTS=http://elastic-search-container:9200
@@ -25,6 +27,7 @@ services:
     ports:
     - 5601:5601
   redis:
+  # https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html
     container_name: redis-container
     image: redis:latest
     restart: always
